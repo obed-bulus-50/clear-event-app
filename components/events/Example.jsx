@@ -1,0 +1,138 @@
+import React, { useState } from "react";
+import Button from "../ui/Button";
+import { Plus } from "lucide-react";
+
+const EventForm = ({ onSubmit, event  }) => {
+  const [formData, setFormData] = useState({
+    name: event?.name || "",
+    description: event?.description || "",
+    date: event?.date || "",
+    location: event?.location || "",
+    attendees: event?.attendees || 0,
+    thunmailUrl: event?.thunmailUrl || "",
+  });
+
+  const onChangeHandler = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+
+
+  return (
+    <div className="p-3">
+      <form className="flex flex-col gap-4 max-w-150" onSubmit={onSubmit}>
+        <div className="flex flex-col gap-2 text-left">
+          <label htmlFor="name">Name:</label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            value={formData.name}
+            onChange={onChangeHandler}
+            placeholder="Enter event name"
+            className="border border-indigo-300/50 bg-indigo-400/30 rounded p-2 focus:border-indigo-500 focus:outline-none placeholder:text-gray-300"
+          />
+        </div>
+
+        <div className="flex flex-col gap-2 text-left">
+          <label htmlFor="description">Description:</label>
+          <input
+            type="text"
+            name="description"
+            id="description"
+            value={formData.description}
+            onChange={onChangeHandler}
+            placeholder="Enter event description"
+            className="border border-indigo-300/50 bg-indigo-400/30 rounded p-2 focus:border-indigo-500 focus:outline-none placeholder:text-gray-300"
+          />
+        </div>
+        <div className="flex flex-col gap-2 text-left">
+          <label htmlFor="date">Date:</label>
+          <input
+            type="date"
+            name="date"
+            id="date"
+            value={formData.date}
+            onChange={onChangeHandler}
+            placeholder="Enter event date"
+            className="border border-indigo-300/50 bg-indigo-400/30 rounded p-2 focus:border-indigo-500 focus:outline-none placeholder:text-gray-300"
+          />
+        </div>
+        <div className="flex flex-col gap-2 text-left">
+          <label htmlFor="location">Location:</label>
+          <input
+            type="text"
+            name="location"
+            id="location"
+            value={formData.location}
+            onChange={onChangeHandler}
+            placeholder="Abuja, Nigeria"
+            className="border border-indigo-300/50 bg-indigo-400/30 rounded p-2 focus:border-indigo-500 focus:outline-none placeholder:text-gray-300"
+          />
+        </div>
+        <div className="flex flex-col gap-2 text-left">
+          <label htmlFor="attendees">Attendees:</label>
+          <input
+            type="text"
+            name="attendees"
+            id="attendees"
+            placeholder="0"
+            value={formData.attendees}
+            onChange={onChangeHandler}
+            className="border border-indigo-300/50 bg-indigo-400/30 rounded p-2 focus:border-indigo-500 focus:outline-none placeholder:text-gray-300"
+          />
+        </div>
+        <div className="flex flex-col gap-2 text-left">
+          <label htmlFor="thunmailUrl">Poster:</label>
+          <input
+            type="url"
+            name="thunmailUrl"
+            id="thunmailUrl"
+            value={formData.thunmailUrl}
+            onChange={onChangeHandler}
+            placeholder="https://example.com/poster.jpg"
+            className="border border-indigo-300/50 bg-indigo-400/30 rounded p-2 focus:border-indigo-500 focus:outline-none placeholder:text-gray-300"
+          />
+        </div>
+        <div className="flex w-full">
+          <Button type="submit" className="w-full justify-center mt-5">
+            <Plus className="w-4 h-4" /> Create Event
+          </Button>
+        </div>
+      </form>
+    </div>
+  );
+};
+
+export default EventForm;
+
+
+
+
+
+
+
+/*import React from "react";
+import EventForm from "../components/events/EventForm";
+
+const NewEvent = () => {
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    console.log("Form submitted");
+  }
+  return (
+    <div>
+      <h1 className="text-2xl font-bold mb-4">Create New Event</h1>
+
+      <EventForm onSubmit={handleSubmit} />
+    </div>
+  );
+};
+
+export default NewEvent;*/
